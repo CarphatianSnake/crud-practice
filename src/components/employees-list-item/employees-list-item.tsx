@@ -2,7 +2,7 @@ import './employees-list-item.css';
 
 import { IEmployeesListItem } from '../../interfaces.ts';
 
-const EmployeesListItem: IEmployeesListItem = ({ id, name, salary, bonus, promotion, onDelete, onToggle, setSalary }) => {
+const EmployeesListItem: IEmployeesListItem = ({ id, name, salary, bonus, promotion, onDelete, onToggle, onSalaryChange }) => {
 
   let itemClasses = "list-group-item d-flex justify-content-between";
   itemClasses = bonus ? `${itemClasses} increase` : itemClasses;
@@ -19,7 +19,10 @@ const EmployeesListItem: IEmployeesListItem = ({ id, name, salary, bonus, promot
       <input
         type="text"
         className="list-group-item-input"
-        defaultValue={`${salary}$`}
+        onChange={(e) => {
+          onSalaryChange(id, e.target.value.trim());
+        }}
+        value={`${salary}$`}
       />
       <div className="d-flex justify-content-center align-items-center">
         <button

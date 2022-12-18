@@ -13,7 +13,7 @@ export interface DeleteItem {
 export interface EmployeeData extends Data {
   onDelete: DeleteItem;
   onToggle: OnToggle;
-  setSalary: SetSalary;
+  onSalaryChange: IOnSalaryChange;
 }
 
 export type SetSalary = React.Dispatch<React.SetStateAction<string>>;
@@ -30,7 +30,7 @@ export interface EmployeesListProps {
   data: Data[];
   onDelete: DeleteItem;
   onToggle: OnToggle;
-  setSalary: SetSalary
+  onSalaryChange: IOnSalaryChange;
 }
 
 export interface IEmplyeesList {
@@ -66,4 +66,8 @@ export enum Filters {
   All = "All employees",
   Promotion = "For promotion",
   Thousand = "Salary > 1000$"
+}
+
+export interface IOnSalaryChange {
+  (id: string, salary: string): void
 }

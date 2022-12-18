@@ -9,7 +9,7 @@ import EmployeesAddForm from '../employees-add-form/employees-add-form';
 
 import './app.css';
 
-import { DeleteItem, AddItem, Data, OnToggle, Filters } from '../../interfaces.ts';
+import { DeleteItem, AddItem, Data, OnToggle, Filters, IOnSalaryChange } from '../../interfaces.ts';
 
 import data from '../../data/data';
 
@@ -20,7 +20,6 @@ function App() {
   const [searchData, setSearchData] = useState(employeesData);
   const [filter, setFilter] = useState(Filters.All);
   const [filteredData, setFilteredData] = useState(searchData);
-  const [salary, setSalary] = useState("");
 
   const deleteItem: DeleteItem = (id) => {
     setEmployeesData(() => employeesData.filter(item => item.id !== id))
@@ -37,6 +36,13 @@ function App() {
     }
     setEmployeesData([...employeesData, newEmployee])
   };
+
+  const onSalaryChange: IOnSalaryChange = (id, salary) => {
+    const value = +salary.replace(/\$/g, '');
+    if ((!Number.isNaN(value))) {
+      setEmployeesData(employeesData.map((item) => item.id === id ? {...item, salary: Math.floor(value)} : item));
+    }
+  }
 
   const onToggle: OnToggle = (id, propName) => {
     setEmployeesData(employeesData.map((item) => item.id === id ? {...item, [propName]: !item[propName]} : item));
@@ -79,7 +85,7 @@ function App() {
         data={filteredData}
         onDelete={deleteItem}
         onToggle={onToggle}
-        setSalary={setSalary}
+        onSalaryChange={onSalaryChange}
       />
       <EmployeesAddForm onAdd={addItem}/>
     </div>

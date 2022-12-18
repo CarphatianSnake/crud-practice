@@ -4,7 +4,7 @@ import './employees-list.css';
 
 import { IEmplyeesList } from "../../interfaces.ts";
 
-const EmployeesList: IEmplyeesList = ({data, onDelete, onToggle, setSalary}) => {
+const EmployeesList: IEmplyeesList = ({data, onDelete, onToggle, onSalaryChange}) => {
 
   const elements = data.map((item) => 
     <EmployeesListItem
@@ -12,7 +12,7 @@ const EmployeesList: IEmplyeesList = ({data, onDelete, onToggle, setSalary}) => 
       {...item}
       onDelete={onDelete}
       onToggle={onToggle}
-      setSalary={setSalary}
+      onSalaryChange={onSalaryChange}
     />);
 
   return (
