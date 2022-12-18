@@ -2,15 +2,18 @@ import EmployeesListItem from '../employees-list-item/employees-list-item';
 
 import './employees-list.css';
 
-import { EmployeesListProps } from "../../interfaces.ts";
+import { IEmplyeesList } from "../../interfaces.ts";
 
-function EmployeesList({data, onDelete}: EmployeesListProps) {
+const EmployeesList: IEmplyeesList = ({data, onDelete, onToggle, setSalary}) => {
 
   const elements = data.map((item) => 
     <EmployeesListItem
       key={item.id}
       {...item}
-      onDelete={onDelete} />);
+      onDelete={onDelete}
+      onToggle={onToggle}
+      setSalary={setSalary}
+    />);
 
   return (
     <ul className="app-list list-group">

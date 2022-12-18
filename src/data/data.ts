@@ -21,6 +21,27 @@ const data: Data[] = [
     salary: 5000,
     bonus: true,
     promotion: false
+  },
+  {
+    id: 'emp4',
+    name: 'Vasyl Kryvyj',
+    salary: 500,
+    bonus: false,
+    promotion: true
+  },
+  {
+    id: 'emp5',
+    name: 'Anna Travneva',
+    salary: 1500,
+    bonus: true,
+    promotion: false
+  },
+  {
+    id: 'emp6',
+    name: 'Olga Kostromskaja',
+    salary: 1750,
+    bonus: false,
+    promotion: false
   }
 ]
 
